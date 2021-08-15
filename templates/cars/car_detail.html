@@ -1,0 +1,52 @@
+{% extends '../base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block styles %}
+<link href="{% static 'css/form.css' %}" rel="stylesheet">
+{% endblock styles %}
+
+{% block content %}
+
+
+<div class="container">
+    <table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Color</th>
+        <th>Transmission</th>
+        <th>Rul</th>
+        <th>Volume</th>
+        <th>Release date</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Author</th>
+        <th>Date created</th>
+        <th>Date modified</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for car in car %}
+    <tr>
+        <td><img src="{{ car.image.url }}"></td>
+        <td>{{ car.title }}</td>
+        <td>{{ car.color }}</td>
+        <td>{{ car.transmission }}</td>
+        <td>{{ car.rul }}</td>
+        <td>{{ car.volume }}</td>
+        <td>{{ car.release_date }}</td>
+        <td>{{ car.price }}</td>
+        <td>{{ car.description }}</td>
+        <td><a href="{% url 'user_detail' car.id%}">{{ car.author }}</a></td>
+        <td>{{ car.date_created|date:"d.m.Y - G:i"}}</td>
+        <td>{{ car.date_modified|date:"d.m.Y - G:i"}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+{% endblock content %}
