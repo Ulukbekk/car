@@ -54,7 +54,7 @@ class Car(models.Model):
     title = models.CharField(max_length=30)
     volume = models.DecimalField(decimal_places=2, max_digits=9)
     price = models.FloatField()
-    release_date = models.IntegerField(('release date'), max_length=4, choices=YEAR_CHOICES,
+    release_date = models.IntegerField(('release date'), choices=YEAR_CHOICES,
                                default=datetime.datetime.now().year)
     description = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
