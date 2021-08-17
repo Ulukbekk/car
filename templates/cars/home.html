@@ -28,7 +28,7 @@
         </td>
         <td><a href="{% url 'car_detail' car.id %}">{{ car.title }}</a></td>
         <td>{{ car.price }}</td>
-        <td><a href="{% url 'user_detail' car.id%}">{{ car.author }}</a></td>
+        <td><a href="{% url 'user_detail' car.author.id%}">{{ car.author }}</a></td>
         <td>{{ car.date_created|date:"d.m.Y - G:i"}}</td>
     </tr>
   {% endfor %}

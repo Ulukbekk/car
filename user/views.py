@@ -19,7 +19,10 @@ def register(request):
 
 
 def user_detail(request,pk):
-    user = User.objects.filter(id=pk)
-    car = Car.objects.all().filter(author=user)
+    user = User.objects.filter(id=pk).first()
+    print(user)
+    car = Car.objects.filter(author=user)
+    print(car)
     return render(request, 'users/user_detail.html',
                   context={'user_detail': user, 'car':car})
+

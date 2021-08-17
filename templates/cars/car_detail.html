@@ -23,6 +23,7 @@
         <th>Price</th>
         <th>Description</th>
         <th>Author</th>
+        <th>Phone number</th>
         <th>Date created</th>
         <th>Date modified</th>
     </tr>
@@ -40,6 +41,7 @@
         <td>{{ car.price }}</td>
         <td>{{ car.description }}</td>
         <td><a href="{% url 'user_detail' car.id%}">{{ car.author }}</a></td>
+        <td>{{ car.author.phone}}</td>
         <td>{{ car.date_created|date:"d.m.Y - G:i"}}</td>
         <td>{{ car.date_modified|date:"d.m.Y - G:i"}}</td>
     </tr>

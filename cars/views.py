@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import AnonymousUser
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
@@ -38,8 +37,10 @@ def create_add(request):
 def car_detail(request, pk):
     car = Car.objects.filter(id=pk)
     cars = Car.objects.all()
+    if request.user == car.author:
+        author = True
     return render(request, 'cars/car_detail.html',
-                  context={'car': car, 'cars':cars})
+                  context={'car': car, 'cars':cars, 'author':author})
 @login_required
 def user_car(request):
     car = Car.objects.filter(author=request.user)
@@ -54,6 +55,8 @@ def user_car(request):
 
 def car_update(request, pk):
     car = Car.objects.filter(id=pk).first()
+    if request.user != car.author:
+        return redirect('home_page')
     if request.method == 'POST':
         form = CarUpdateForm(request.POST, request.FILES, instance=car)
         if form.is_valid():
@@ -65,6 +68,8 @@ def car_update(request, pk):
 
 def car_delete(request, pk):
     car = Car.objects.filter(id=pk).first()
+    if request.user != car.author:
+        return redirect('home_page')
     car.delete()
     return redirect('/')
 
@@ -73,3 +78,6 @@ def search(request):
     cars = Car.objects.filter(title__icontains=query)
     return render(request, 'cars/home.html',
                   context={'cars': cars})
+
+def error(request):
+    return render(request, 'page404.html')
