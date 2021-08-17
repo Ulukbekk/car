@@ -20,6 +20,6 @@ def register(request):
 
 def user_detail(request,pk):
     user = User.objects.filter(id=pk)
-    car = Car.objects.all().filter(id=pk)
+    car = Car.objects.all().filter(author=user)
     return render(request, 'users/user_detail.html',
                   context={'user_detail': user, 'car':car})
