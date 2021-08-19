@@ -37,10 +37,10 @@ def create_add(request):
 def car_detail(request, pk):
     car = Car.objects.filter(id=pk)
     cars = Car.objects.all()
-    if request.user == car.author:
-        author = True
+    # if request.user == car.author:
+    #     author = True
     return render(request, 'cars/car_detail.html',
-                  context={'car': car, 'cars':cars, 'author':author})
+                  context={'car': car, 'cars':cars})
 @login_required
 def user_car(request):
     car = Car.objects.filter(author=request.user)
