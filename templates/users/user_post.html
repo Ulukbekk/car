@@ -43,7 +43,6 @@
         <td>{{ car.author }}</td>
         <td>{{ car.date_created|date:"d.m.Y - G:i"}}</td>
         <td>{{ car.date_modified|date:"d.m.Y - G:i"}}</td>
-        {% if author %}
         <td>
             <a id="edit" href="{% url 'car_update' car.id %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -57,7 +56,6 @@
             </svg>
             </a>
         </td>
-        {% endif %}
     </tr>
   {% endfor %}
   </tbody>
