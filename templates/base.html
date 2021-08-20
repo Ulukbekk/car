@@ -29,6 +29,10 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'user_car' %}">{{ user.username }}</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'profile' %}">Profile</a>
+
+        </li>
         {% else %}
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Registration</a>
